@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEN Trucking Network</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>TEN Trucking Network</h1>
+    <p>Join the verified driver network and unlock premium opportunities.</p>
+  </header>
+
+  <main>
+    <form id="driverForm">
+      <h2>Driver Profile</h2>
+
+      <!-- Identity -->
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phone" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <!-- CDL & Endorsements -->
+      <label for="cdlClass">CDL Class</label>
+      <select id="cdlClass" name="cdlClass" required>
+        <option value="">Select</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+      </select>
+
+      <label>Endorsements</label>
+      <fieldset>
+        <label><input type="checkbox" name="endorsement" value="HazMat"> HazMat</label>
+        <label><input type="checkbox" name="endorsement" value="Tanker"> Tanker</label>
+        <label><input type="checkbox" name="endorsement" value="Doubles/Triples"> Doubles/Triples</label>
+        <label><input type="checkbox" name="endorsement" value="Passenger"> Passenger</label>
+        <label><input type="checkbox" name="endorsement" value="TWIC"> TWIC</label>
+      </fieldset>
+
+      <!-- Driver Type & Fleet -->
+      <label for="driverType">Driver Type</label>
+      <select id="driverType" name="driverType" required>
+        <option value="">Select</option>
+        <option value="Company Driver">Company Driver</option>
+        <option value="Owner-Operator">Owner-Operator</option>
+        <option value="Owner-Operator w/ Authority">Owner-Operator w/ Authority</option>
+        <option value="Fleet Owner">Fleet Owner</option>
+      </select>
+
+      <label for="fleetSize">Fleet Size (if applicable)</label>
+      <input type="number" id="fleetSize" name="fleetSize" min="0">
+
+      <label for="experience">Years of Experience</label>
+      <input type="number" id="experience" name="experience" min="0">
+
+      <!-- Equipment & Telematics -->
+      <label for="equipment">Equipment Type</label>
+      <select id="equipment" name="equipment" required>
+        <option value="">Select</option>
+        <option value="Dry Van">Dry Van</option>
+        <option value="Reefer">Reefer</option>
+        <option value="Flatbed">Flatbed</option>
+        <option value="Step Deck">Step Deck</option>
+        <option value="Hotshot">Hotshot</option>
+        <option value="Box Truck">Box Truck</option>
+      </select>
+
+      <label for="eld">ELD System</label>
+      <select id="eld" name="eld">
+        <option value="">Select</option>
+        <option value="Samsara">Samsara</option>
+        <option value="Omnitracs">Omnitracs</option>
+        <option value="Motive">Motive</option>
+        <option value="Garmin">Garmin</option>
+      </select>
+
+      <!-- Routes & Preferences -->
+      <label for="route">Preferred Route</label>
+      <select id="route" name="route" required>
+        <option value="">Select</option>
+        <option value="Local">Local</option>
+        <option value="Regional">Regional</option>
+        <option value="OTR">OTR</option>
+      </select>
+
+      <label for="homeCity">Home Terminal City</label>
+      <input type="text" id="homeCity" name="homeCity" required>
+
+      <label for="homeState">Home Terminal State</label>
+      <input type="text" id="homeState" name="homeState" required>
+
+      <fieldset>
+        <legend>Willingness</legend>
+        <label><input type="checkbox" name="willingness" value="Team Driving"> Team Driving</label>
+        <label><input type="checkbox" name="willingness" value="HazMat loads"> HazMat loads</label>
+        <label><input type="checkbox" name="willingness" value="Port Loads"> Port Loads</label>
+        <label><input type="checkbox" name="willingness" value="Oversize"> Oversize</label>
+      </fieldset>
+
+      <!-- Pay & Insurance -->
+      <label for="payStructure">Desired Pay Structure</label>
+      <select id="payStructure" name="payStructure" required>
+        <option value="">Select</option>
+        <option value="CPM">CPM</option>
+        <option value="Percentage">Percentage</option>
+        <option value="Day Rate">Day Rate</option>
+        <option value="Owner-Op Rate">Owner-Op Rate</option>
+      </select>
+
+      <label for="insurance">Insurance Status (Owner-Op only)</label>
+      <select id="insurance" name="insurance">
+        <option value="">Select</option>
+        <option value="Active">Active</option>
+        <option value="None">None</option>
+      </select>
+
+      <!-- Interests & Opt-Ins -->
+      <fieldset>
+        <legend>Interests / Opt-Ins</legend>
+        <label><input type="checkbox" name="interest" value="Referral Program"> Referral Program</label>
+        <label><input type="checkbox" name="interest" value="CDL School / Endorsement Training"> CDL School / Training</label>
+        <label><input type="checkbox" name="interest" value="Insurance & Benefits"> Insurance / Benefits</label>
+        <label><input type="checkbox" name="interest" value="Newsletter"> Newsletter</label>
+      </fieldset>
+
+      <label><input type="checkbox" id="consent" required> I consent to data collection and licensing for analytics and offers.</label>
+
+      <button type="submit">Join Network</button>
+    </form>
+
+    <div id="confirmation" style="display:none;">
+      <h2>Thank you!</h2>
+      <p>Your profile is being verified. Referral and info features coming soon.</p>
+      <button id="referBtn">Refer a Driver</button>
+      <button id="infoBtn">Get CDL Info</button>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
