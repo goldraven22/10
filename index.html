@@ -1,166 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trucking Network Premium Signup</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  /* Reset + Global Styles */
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-  body { background: #f5f5f7; color: #111; line-height: 1.6; }
-  a { text-decoration: none; color: inherit; }
-
-  /* Hero Section */
-  .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 90vh; background: linear-gradient(135deg, #0a2342, #1c3b5a); color: #fff; padding: 2rem; }
-  .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-  .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
-  .hero .cta { background: #ffbf00; color: #111; padding: 1rem 2rem; font-weight: 700; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
-  .hero .cta:hover { transform: scale(1.05); }
-
-  /* Form Container */
-  .form-container { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-  .form-step { display: none; flex-direction: column; }
-  .form-step.active { display: flex; }
-  .form-step h2 { margin-bottom: 1rem; color: #0a2342; }
-  .form-step input, .form-step select { padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 6px; }
-  .form-step button { background: #0a2342; color: #fff; padding: 1rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-  .form-step button:hover { background: #1c3b5a; }
-
-  /* Progress Bar */
-  .progress-container { height: 10px; width: 100%; background: #eee; border-radius: 5px; margin-bottom: 1.5rem; }
-  .progress-bar { height: 10px; width: 0%; background: #ffbf00; border-radius: 5px; transition: width 0.3s ease; }
-
-  /* Responsive */
-  @media(max-width: 768px) {
-    .hero h1 { font-size: 2.2rem; }
-  }
-</style>
-</head>
-<body>
-
-<!-- Hero Section -->
-<section class="hero">
-  <h1>Join the Top 5% of Verified Drivers</h1>
-  <p>Unlock premium routes, verified status, and exclusive earning opportunities. Each verified sign-up can generate $100+ in value.</p>
-  <button class="cta" id="startForm">Start Your Premium Signup</button>
+<!-- Hero & Mission Section -->
+<section class="bg-gradient-to-r from-blue-700 to-indigo-600 text-white py-20">
+  <div class="container mx-auto text-center px-6">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">Join the Verified Truckers Network</h1>
+    <p class="text-lg md:text-xl mb-6">We’re building a trusted, professional network of drivers, owner-operators, and logistics specialists. Stay compliant, showcase your credentials, and access premium opportunities.</p>
+    <a href="#onboardingForm" class="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition">Start Your Journey</a>
+  </div>
 </section>
 
-<!-- Multi-Step Form -->
-<div class="form-container" id="signupForm">
-  <div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
+<!-- About / Mission Tabs -->
+<section class="container mx-auto py-16 px-6">
+  <div id="aboutTabs">
+    <div class="flex flex-wrap mb-8 border-b border-gray-200">
+      <button class="about-tab-button py-2 px-4 font-semibold text-blue-700 border-b-2 border-blue-700 mr-2" data-tab="mission">Our Mission</button>
+      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700 mr-2" data-tab="benefits">Driver Benefits</button>
+      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700 mr-2" data-tab="partners">Company & Owner-Operator Benefits</button>
+      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700" data-tab="community">Our Community</button>
+    </div>
 
-  <!-- Step 1 -->
-  <div class="form-step active">
-    <h2>Step 1: Your Credentials</h2>
-    <select id="cdlClass">
-      <option value="">Select CDL Class</option>
-      <option value="A">Class A</option>
-      <option value="B">Class B</option>
-      <option value="C">Class C</option>
-    </select>
-    <select id="endorsements">
-      <option value="">Select Endorsements</option>
-      <option value="HazMat">HazMat</option>
-      <option value="Tanker">Tanker</option>
-      <option value="Doubles/Triples">Doubles/Triples</option>
-      <option value="Passenger">Passenger</option>
-      <option value="TWIC">TWIC</option>
-    </select>
-    <button type="button" class="nextBtn">Next</button>
-  </div>
+    <div id="about-tab-contents">
+      <!-- Mission -->
+      <div class="about-tab-content" id="mission">
+        <div class="bg-white p-6 rounded shadow-md">
+          <h2 class="text-2xl font-bold mb-4">Our Mission</h2>
+          <p>We are here to professionalize and empower the trucking and logistics industry. By providing a centralized network for verified drivers, owner-operators, and fleets, we help our members maximize opportunities, maintain compliance, and gain access to premium work, all in one trusted ecosystem.</p>
+        </div>
+      </div>
 
-  <!-- Step 2 -->
-  <div class="form-step">
-    <h2>Step 2: Truck & Routes</h2>
-    <select id="driverType">
-      <option value="">Select Driver Type</option>
-      <option value="CompanyDriver">Company Driver</option>
-      <option value="OwnerOperator">Owner-Operator</option>
-      <option value="FleetOwner">Fleet Owner</option>
-    </select>
-    <select id="equipment">
-      <option value="">Equipment Type</option>
-      <option value="DryVan">Dry Van</option>
-      <option value="Reefer">Reefer</option>
-      <option value="Flatbed">Flatbed</option>
-      <option value="StepDeck">Step Deck</option>
-      <option value="Hotshot">Hotshot</option>
-      <option value="BoxTruck">Box Truck</option>
-    </select>
-    <button type="button" class="prevBtn">Previous</button>
-    <button type="button" class="nextBtn">Next</button>
-  </div>
+      <!-- Driver Benefits -->
+      <div class="about-tab-content hidden" id="benefits">
+        <div class="bg-white p-6 rounded shadow-md">
+          <h2 class="text-2xl font-bold mb-4">Driver Benefits</h2>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Showcase verified credentials for top-tier placement.</li>
+            <li>Receive alerts for upskilling, certifications, and renewals.</li>
+            <li>Access exclusive training programs and endorsement courses.</li>
+            <li>Priority connection to carriers seeking verified drivers.</li>
+            <li>Opportunities for owner-operators to scale their business efficiently.</li>
+          </ul>
+        </div>
+      </div>
 
-  <!-- Step 3 -->
-  <div class="form-step">
-    <h2>Step 3: Preferences & Pay</h2>
-    <select id="payStructure">
-      <option value="">Select Pay Structure</option>
-      <option value="CPM">CPM</option>
-      <option value="Percentage">Percentage</option>
-      <option value="DayRate">Day Rate</option>
-      <option value="OwnerOpRate">Owner-Op Rate per Mile</option>
-    </select>
-    <input type="text" id="preferredRoute" placeholder="Preferred Route (Local, Regional, OTR)">
-    <button type="button" class="prevBtn">Previous</button>
-    <button type="button" id="submitBtn">Submit</button>
-  </div>
-</div>
+      <!-- Partner / Owner Benefits -->
+      <div class="about-tab-content hidden" id="partners">
+        <div class="bg-white p-6 rounded shadow-md">
+          <h2 class="text-2xl font-bold mb-4">Company & Owner-Operator Benefits</h2>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Quickly identify verified, qualified drivers for hire.</li>
+            <li>Reduce onboarding time and compliance risk.</li>
+            <li>Access tools for fleet management, load boards, and route optimization.</li>
+            <li>Participate in a trusted network of logistics professionals.</li>
+            <li>Boost your business visibility and credibility in the industry.</li>
+          </ul>
+        </div>
+      </div>
 
+      <!-- Community -->
+      <div class="about-tab-content hidden" id="community">
+        <div class="bg-white p-6 rounded shadow-md">
+          <h2 class="text-2xl font-bold mb-4">Our Community</h2>
+          <p>We are building a professional, collaborative network where drivers, owner-operators, and logistics specialists can connect, learn, and grow. Members benefit from shared expertise, industry insights, and access to premium opportunities that elevate the entire trucking ecosystem.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JS for About Tabs -->
 <script>
-  const startBtn = document.getElementById('startForm');
-  const form = document.getElementById('signupForm');
-  const steps = document.querySelectorAll('.form-step');
-  const nextBtns = document.querySelectorAll('.nextBtn');
-  const prevBtns = document.querySelectorAll('.prevBtn');
-  const progressBar = document.getElementById('progressBar');
+  const aboutButtons = document.querySelectorAll('.about-tab-button');
+  const aboutContents = document.querySelectorAll('.about-tab-content');
 
-  startBtn.addEventListener('click', () => {
-    document.querySelector('.hero').style.display = 'none';
-    form.style.display = 'block';
-  });
-
-  let currentStep = 0;
-
-  nextBtns.forEach(btn => {
+  aboutButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      steps[currentStep].classList.remove('active');
-      currentStep++;
-      steps[currentStep].classList.add('active');
-      updateProgressBar();
+      const tab = btn.getAttribute('data-tab');
+
+      aboutContents.forEach(t => t.classList.add('hidden'));
+      document.getElementById(tab).classList.remove('hidden');
+
+      aboutButtons.forEach(b => b.classList.remove('text-blue-700', 'border-blue-700'));
+      aboutButtons.forEach(b => b.classList.add('text-gray-600'));
+      btn.classList.add('text-blue-700', 'border-blue-700');
+      btn.classList.remove('text-gray-600');
     });
-  });
-
-  prevBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      steps[currentStep].classList.remove('active');
-      currentStep--;
-      steps[currentStep].classList.add('active');
-      updateProgressBar();
-    });
-  });
-
-  function updateProgressBar() {
-    const percent = ((currentStep) / (steps.length - 1)) * 100;
-    progressBar.style.width = percent + '%';
-  }
-
-  document.getElementById('submitBtn').addEventListener('click', () => {
-    const data = {
-      cdlClass: document.getElementById('cdlClass').value,
-      endorsements: document.getElementById('endorsements').value,
-      driverType: document.getElementById('driverType').value,
-      equipment: document.getElementById('equipment').value,
-      payStructure: document.getElementById('payStructure').value,
-      preferredRoute: document.getElementById('preferredRoute').value
-    };
-    console.log('Collected Data:', data);
-    alert('Signup submitted! Check console for collected data.');
-    // Placeholder: hook to your database / blockchain / analytics
   });
 </script>
-</body>
-</html>
