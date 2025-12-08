@@ -1,173 +1,130 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verified Truckers Network</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Trucking Network Onboarding</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://unpkg.com/flowbite@1.8.0/dist/flowbite.min.css" />
+<style>
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1.25rem;
+  left: 2.5rem;
+  right: -1.25rem;
+  height: 2px;
+  border-top: 2px dashed #e5e7eb;
+  z-index: 0;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+}
+.error-shake { animation: shake 0.3s; }
+.error-message { @apply text-red-600 text-xs mt-1 hidden; }
+.tab-btn-active { @apply bg-orange-500 text-white border-b-2 border-orange-500; }
+.score-badge { @apply fixed top-24 right-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 font-semibold; }
+.progress-summary { @apply bg-blue-50 border-l-4 border-blue-500 p-3 rounded-r mb-4; }
+.touch-target { min-height: 48px; min-width: 48px; }
+</style>
 </head>
 <body class="bg-gray-50 font-sans">
 
 <!-- Hero Section -->
-<section class="bg-gradient-to-r from-blue-700 to-indigo-600 text-white py-20">
-  <div class="container mx-auto text-center px-6">
-    <h1 class="text-4xl md:text-6xl font-bold mb-4">Join the Verified Truckers Network</h1>
-    <p class="text-lg md:text-xl mb-6">We’re building a trusted, professional network of drivers, owner-operators, and logistics specialists. Stay compliant, showcase your credentials, and access premium opportunities.</p>
-    <a href="#onboardingForm" class="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition">Start Your Journey</a>
+<section class="relative bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 text-white py-20 overflow-hidden">
+  <div class="container mx-auto text-center px-4 relative z-10">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">Join the Premium Trucking Network</h1>
+    <p class="mb-8 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">Verified • Compliant • Premium opportunities for drivers & fleets—complete control retained.</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+      <a href="#onboarding" class="bg-white text-orange-600 font-bold py-4 px-8 rounded-xl shadow-2xl hover:shadow-3xl hover:bg-gray-50 transition-all duration-300 touch-target">🚚 Get Verified Now</a>
+      <a href="#features" class="border-2 border-white text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-orange-600 transition-all duration-300 touch-target">Learn More</a>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4 items-center text-sm">
+      <span class="inline-flex items-center px-3 py-1 rounded-full bg-green-100/90 text-green-800 font-semibold backdrop-blur-sm">✅ DOT/FMCSA Compliant</span>
+      <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-100/90 text-blue-800 font-semibold backdrop-blur-sm">🔒 AES-256 Encrypted</span>
+      <span class="inline-flex items-center px-3 py-1 rounded-full bg-purple-100/90 text-purple-800 font-semibold backdrop-blur-sm">⭐ 10K+ Verified</span>
+    </div>
   </div>
 </section>
 
-<!-- About / Mission Tabs -->
-<section class="container mx-auto py-16 px-6">
-  <div id="aboutTabs">
-    <div class="flex flex-wrap mb-8 border-b border-gray-200">
-      <button class="about-tab-button py-2 px-4 font-semibold text-blue-700 border-b-2 border-blue-700 mr-2" data-tab="mission">Our Mission</button>
-      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700 mr-2" data-tab="benefits">Driver Benefits</button>
-      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700 mr-2" data-tab="partners">Company / Owner Benefits</button>
-      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700" data-tab="community">Community</button>
-    </div>
-
-    <div id="about-tab-contents">
-      <!-- Mission -->
-      <div class="about-tab-content" id="mission">
-        <div class="bg-white p-6 rounded shadow-md">
-          <h2 class="text-2xl font-bold mb-4">Our Mission</h2>
-          <p>We are here to professionalize and empower the trucking and logistics industry. By providing a centralized network for verified drivers, owner-operators, and fleets, we help our members maximize opportunities, maintain compliance, and gain access to premium work, all in one trusted ecosystem.</p>
+<!-- Features Tabs -->
+<section id="features" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <ul class="flex flex-wrap -mb-px border-b border-gray-200" id="tabs" role="tablist">
+        <li class="mr-2"><button class="tab-btn inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-orange-300 font-semibold touch-target" data-tab="mission" aria-selected="true">🎯 Mission</button></li>
+        <li class="mr-2"><button class="tab-btn inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-orange-300 font-semibold touch-target" data-tab="drivers">🚛 Drivers</button></li>
+        <li class="mr-2"><button class="tab-btn inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-orange-600 hover:border-orange-300 font-semibold touch-target" data-tab="fleet">🏢 Fleets/OOs</button></li>
+      </ul>
+      <div class="mt-8">
+        <div id="mission" class="tab-content p-8 bg-gray-50 rounded-xl shadow-sm">
+          <h2 class="text-3xl font-bold mb-4 text-gray-800">Our Mission</h2>
+          <p class="text-xl text-gray-600 mb-6 leading-relaxed">We verify trucking professionals once, then unlock premium opportunities while fleets retain full control. DOT compliant, encrypted, and monetizable.</p>
         </div>
-      </div>
-
-      <!-- Driver Benefits -->
-      <div class="about-tab-content hidden" id="benefits">
-        <div class="bg-white p-6 rounded shadow-md">
-          <h2 class="text-2xl font-bold mb-4">Driver Benefits</h2>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Showcase verified credentials for top-tier placement.</li>
-            <li>Receive alerts for upskilling, certifications, and renewals.</li>
-            <li>Access exclusive training programs and endorsement courses.</li>
-            <li>Priority connection to carriers seeking verified drivers.</li>
-            <li>Opportunities for owner-operators to scale their business efficiently.</li>
+        <div id="drivers" class="tab-content hidden p-8 bg-gray-50 rounded-xl shadow-sm">
+          <h2 class="text-3xl font-bold mb-4 text-gray-800">Driver Benefits</h2>
+          <ul class="grid md:grid-cols-2 gap-4 text-lg">
+            <li class="flex items-start"><span class="text-green-500 mr-3 mt-0.5">✅</span>Fast verification + credential tracking</li>
+            <li class="flex items-start"><span class="text-green-500 mr-3 mt-0.5">✅</span>High-paying loads + priority placement</li>
+            <li class="flex items-start"><span class="text-green-500 mr-3 mt-0.5">✅</span>Certification reminders + upskilling</li>
+            <li class="flex items-start"><span class="text-green-500 mr-3 mt-0.5">✅</span>Encrypted document storage</li>
           </ul>
         </div>
-      </div>
-
-      <!-- Partner / Owner Benefits -->
-      <div class="about-tab-content hidden" id="partners">
-        <div class="bg-white p-6 rounded shadow-md">
-          <h2 class="text-2xl font-bold mb-4">Company / Owner-Operator Benefits</h2>
-          <ul class="list-disc list-inside space-y-2">
-            <li>Quickly identify verified, qualified drivers for hire.</li>
-            <li>Reduce onboarding time and compliance risk.</li>
-            <li>Access tools for fleet management, load boards, and route optimization.</li>
-            <li>Participate in a trusted network of logistics professionals.</li>
-            <li>Boost your business visibility and credibility in the industry.</li>
+        <div id="fleet" class="tab-content hidden p-8 bg-gray-50 rounded-xl shadow-sm">
+          <h2 class="text-3xl font-bold mb-4 text-gray-800">Fleet Benefits</h2>
+          <ul class="grid md:grid-cols-2 gap-4 text-lg">
+            <li class="flex items-start"><span class="text-green-500 mr-3 mt-0.5">✅</span>Protect drivers from poaching</li>
+            <li class="flex items-start"><span class="text-green-500 mr-3 mt-0.5">✅</span>Instant verified profile access</li>
+            <li class="flex items-start"><span class="text-green-500 mr-3 mt-0.5">✅</span>Automated compliance tracking</li>
+            <li class="flex items-start"><span class="text-green-500 mr-3 mt-0.5">✅</span>Premium operational analytics</li>
           </ul>
-        </div>
-      </div>
-
-      <!-- Community -->
-      <div class="about-tab-content hidden" id="community">
-        <div class="bg-white p-6 rounded shadow-md">
-          <h2 class="text-2xl font-bold mb-4">Our Community</h2>
-          <p>We are building a professional, collaborative network where drivers, owner-operators, and logistics specialists can connect, learn, and grow. Members benefit from shared expertise, industry insights, and access to premium opportunities that elevate the entire trucking ecosystem.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- JS for About Tabs -->
-<script>
-  const aboutButtons = document.querySelectorAll('.about-tab-button');
-  const aboutContents = document.querySelectorAll('.about-tab-content');
+<!-- Onboarding Form -->
+<section id="onboarding" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent mb-4">Complete Verification</h2>
+      <p class="text-xl text-gray-600">Takes 5-10 minutes. Auto-saves progress. Mobile optimized.</p>
+    </div>
 
-  aboutButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.getAttribute('data-tab');
-
-      aboutContents.forEach(t => t.classList.add('hidden'));
-      document.getElementById(tab).classList.remove('hidden');
-
-      aboutButtons.forEach(b => b.classList.remove('text-blue-700', 'border-blue-700'));
-      aboutButtons.forEach(b => b.classList.add('text-gray-600'));
-      btn.classList.add('text-blue-700', 'border-blue-700');
-      btn.classList.remove('text-gray-600');
-    });
-  });
-</script>
-
-<!-- Multi-Step Onboarding Form -->
-<section id="onboardingForm" class="container mx-auto py-16 px-6">
-  <h2 class="text-3xl font-bold mb-6 text-center">Driver & Owner-Operator Onboarding</h2>
-  <form id="driverForm" class="space-y-8 bg-white p-6 rounded shadow-md">
-
-    <!-- Section 1: Personal Info -->
-    <div class="form-section">
-      <h3 class="text-xl font-semibold mb-4">Personal Information</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input type="text" name="fullName" placeholder="Full Legal Name" required class="border p-2 rounded w-full">
-        <input type="text" name="preferredName" placeholder="Preferred Name" class="border p-2 rounded w-full">
-        <input type="date" name="dob" placeholder="Date of Birth" required class="border p-2 rounded w-full">
-        <input type="email" name="email" placeholder="Email Address" required class="border p-2 rounded w-full">
-        <input type="text" name="phone" placeholder="Phone Number" required class="border p-2 rounded w-full">
-        <input type="text" name="address" placeholder="Home Address" required class="border p-2 rounded w-full">
-        <input type="text" name="emergencyContact" placeholder="Emergency Contact" class="border p-2 rounded w-full">
+    <!-- Progress Summary -->
+    <div id="progressSummary" class="progress-summary hidden">
+      <div class="flex items-center">
+        <div class="flex-1">
+          <span class="text-sm font-medium text-blue-800">Step <span id="currentStepNum">1</span> of 9</span>
+        </div>
+        <div class="flex-1 text-right">
+          <span id="scoreBadge" class="score-badge inline-block">Verified Score: 0/100</span>
+        </div>
       </div>
     </div>
 
-    <!-- Section 2: CDL & Core Credentials -->
-    <div class="form-section">
-      <h3 class="text-xl font-semibold mb-4">CDL & Core Credentials</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <select name="cdlStatus" required class="border p-2 rounded w-full">
-          <option value="">Do you have a Commercial Driver’s License (CDL)?</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        <input type="file" name="cdlUpload" accept=".jpg,.png,.pdf" class="border p-2 rounded w-full">
-        <input type="text" name="cdlNumber" placeholder="CDL Number" class="border p-2 rounded w-full">
-        <input type="text" name="licenseState" placeholder="License State" class="border p-2 rounded w-full">
-        <input type="date" name="licenseExpiration" placeholder="License Expiration Date" class="border p-2 rounded w-full">
+    <!-- Stepper -->
+    <ol class="flex flex-col md:flex-row justify-between mb-12 gap-2 md:gap-0" role="progressbar" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1">
+      <li class="step-item relative flex-1 text-center md:basis-1/9" data-step="0"><div class="step-indicator w-10 h-10 mx-auto rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm shadow">1</div><div class="mt-2 text-xs font-medium">Personal</div></li>
+      <li class="step-item relative flex-1 text-center md:basis-1/9" data-step="1"><div class="step-indicator w-10 h-10 mx-auto rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm shadow">2</div><div class="mt-2 text-xs font-medium">Credentials</div></li>
+      <li class="step-item relative flex-1 text-center md:basis-1/9" data-step="2"><div class="step-indicator w-10 h-10 mx-auto rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm shadow">3</div><div class="mt-2 text-xs font-medium">Endorsements</div></li>
+      <li class="step-item relative flex-1 text-center md:basis-1/9" data-step="3"><div class="step-indicator w-10 h-10 mx-auto rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm shadow">4</div><div class="mt-2 text-xs font-medium">Experience</div></li>
+      <li class="step-item relative flex-1 text-center md:basis-1/9" data-step="4"><div class="step-indicator w-10 h-10 mx-auto rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm shadow">5</div><div class="mt-2 text-xs font-medium">Cargo</div></li>
+      <li class="step-item relative flex-1 text-center md:basis-1/9" data-step="5"><div class="step-indicator w-10 h-10 mx-auto rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm shadow">6</div><div class="mt-2 text-xs font-medium">Owner-Op</div></li>
+      <li class="step-item relative flex-1 text-center md:basis-1/9" data-step="6"><div class="step-indicator w-10 h-10 mx-auto rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm
 
-        <select name="dotCard" required class="border p-2 rounded w-full">
-          <option value="">Do you have an active DOT Medical Card?</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        <input type="file" name="dotCardUpload" accept=".jpg,.png,.pdf" class="border p-2 rounded w-full">
-        <input type="date" name="dotExpiration" placeholder="DOT Expiration Date" class="border p-2 rounded w-full">
-      </div>
-    </div>
-
-    <!-- Section 3: Endorsements & Skills -->
-    <div class="form-section">
-      <h3 class="text-xl font-semibold mb-4">Endorsements & Skills</h3>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <label><input type="checkbox" name="endorsements" value="HazMat"> HazMat</label>
-        <label><input type="checkbox" name="endorsements" value="Tanker"> Tanker</label>
-        <label><input type="checkbox" name="endorsements" value="Doubles/Triples"> Doubles/Triples</label>
-        <label><input type="checkbox" name="endorsements" value="Passenger"> Passenger</label>
-        <label><input type="checkbox" name="endorsements" value="SchoolBus"> School Bus</label>
-        <label><input type="checkbox" name="endorsements" value="AirBrakes"> Air Brakes Certified</label>
-      </div>
-      <div class="mt-4">
-        <label>Upload relevant certifications (HazMat, TSA, etc.)</label>
-        <input type="file" name="certUploads" multiple accept=".jpg,.png,.pdf" class="border p-2 rounded w-full">
-      </div>
-    </div>
-
-    <!-- Section 4+: Add other sections like Experience, Cargo, Owner-Operator, Equipment, Security, Optional Credentials, Update System -->
-    <!-- Repeat same pattern: grid input fields, file uploads, conditional logic for Owner-Operators, fleets, etc. -->
-
-    <div class="text-center">
-      <button type="submit" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition">Submit Application</button>
-    </div>
-  </form>
-</section>
-
-<!-- Add JS later for multi-step logic, conditional fields, uploads handling -->
-<script>
-  // Example: placeholder for conditional Owner-Operator fields or stepper navigation
-</script>
-
-</body>
-</html>
+Sources
+[1] Svelte Stepper - Flowbite https://flowbite-svelte.com/docs/components/stepper
+[2] Tailwind CSS Stepper https://flowbite.com/docs/components/stepper/
+[3] flowbite/content/components/stepper.md at main https://github.com/themesberg/flowbite/blob/main/content/components/stepper.md
+[4] 30 Tailwind Stepper Component Examples https://www.codewithfaraz.com/article/200/30-tailwind-stepper-component-examples
+[5] I built a free and open-source stepper component with ... https://www.reddit.com/r/tailwindcss/comments/1093ren/i_built_a_free_and_opensource_stepper_component/
+[6] Flowbite - Build websites even faster with components on top ... https://flowbite.com
+[7] Tailwind CSS Stepper - Free Examples & Tutorial https://tw-elements.com/docs/standard/components/stepper/
+[8] 32 Stepper UI Examples and What Makes Them Work https://www.eleken.co/blog-posts/stepper-ui-examples
+[9] Introduction to UI components using Tailwind CSS https://www.youtube.com/watch?v=KaLxCiilHns
+[10] Tailwind CSS Stepper for React https://www.material-tailwind.com/docs/react/stepper
