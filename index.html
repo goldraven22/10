@@ -3,167 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEN Trucking Network</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ipfs-http-client/dist/index.min.js"></script>
+<title>Trucking Network Signup</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg,#f0f2f5,#e2e8f0);
+    margin: 0; padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  h1 { text-align: center; color: #1a202c; }
+  .step { display: none; }
+  .step.active { display: block; }
+  .step input, .step select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    background-color: #3182ce;
+    color: white;
+    cursor: pointer;
+  }
+  button:hover { background-color: #2b6cb0; }
+  .progress-bar {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    width: 0%;
+    background-color: #3182ce;
+    transition: width 0.3s ease;
+  }
+</style>
 </head>
 <body>
+<div class="container">
+  <h1>Join the Trucking Network</h1>
+  <div class="progress-bar"><div class="progress-bar-inner" id="progress"></div></div>
 
-<h1>TEN Trucking Network — Join & Monetize Your Profile</h1>
+  <form id="signupForm">
 
-<form id="driverForm">
-  <h2>Driver Profile</h2>
-  
-  <label>Name:</label>
-  <input type="text" id="name" required>
-  
-  <label>Email:</label>
-  <input type="email" id="email" required>
-  
-  <label>Phone:</label>
-  <input type="tel" id="phone" required>
-  
-  <label>CDL Class:</label>
-  <select id="cdlClass" required>
-    <option value="A">A</option>
-    <option value="B">B</option>
-    <option value="C">C</option>
-  </select>
+    <!-- Step 1: Personal & Contact -->
+    <div class="step active">
+      <h2>Personal & Contact Info</h2>
+      <input type="text" name="fullName" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <div class="buttons">
+        <span></span>
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
+    </div>
 
-  <label>Endorsements:</label>
-  <input type="checkbox" id="hazmat">HazMat
-  <input type="checkbox" id="tanker">Tanker
-  <input type="checkbox" id="doubles">Doubles/Triples
-  <input type="checkbox" id="passenger">Passenger
-  <input type="checkbox" id="twic">TWIC
+    <!-- Step 2: Driver Info -->
+    <div class="step">
+      <h2>Driver & Vehicle Info</h2>
+      <select name="cdlClass" required>
+        <option value="">Select CDL Class</option>
+        <option value="A">Class A</option>
+        <option value="B">Class B</option>
+        <option value="C">Class C</option>
+      </select>
 
-  <label>Driver Type:</label>
-  <select id="driverType" required>
-    <option value="Company">Company Driver</option>
-    <option value="Owner-Operator">Owner-Operator</option>
-    <option value="Fleet">Fleet Owner</option>
-  </select>
+      <select name="driverType" required>
+        <option value="">Driver Type</option>
+        <option value="company">Company Driver</option>
+        <option value="owner-op">Owner-Operator</option>
+        <option value="owner-op-authority">Owner-Operator w/ Authority</option>
+        <option value="fleet-owner">Fleet Owner</option>
+      </select>
 
-  <label>Fleet Size:</label>
-  <input type="number" id="fleetSize" min="0" value="0">
+      <input type="number" name="fleetSize" placeholder="Number of Trucks (if Fleet Owner)">
+      
+      <label>Endorsements:</label>
+      <select name="endorsements" multiple>
+        <option value="HazMat">HazMat</option>
+        <option value="Tanker">Tanker</option>
+        <option value="Doubles/Triples">Doubles/Triples</option>
+        <option value="Passenger">Passenger</option>
+        <option value="TWIC">TWIC Card</option>
+      </select>
 
-  <label>Years Driving:</label>
-  <input type="number" id="experience" min="0" value="0">
+      <label>Equipment Type:</label>
+      <select name="equipment" multiple required>
+        <option value="Dry Van">Dry Van</option>
+        <option value="Reefer">Reefer</option>
+        <option value="Flatbed">Flatbed</option>
+        <option value="Step Deck">Step Deck</option>
+        <option value="Hotshot">Hotshot</option>
+        <option value="Box Truck">Box Truck</option>
+      </select>
 
-  <label>Equipment Type:</label>
-  <select id="equipment">
-    <option value="Dry Van">Dry Van</option>
-    <option value="Reefer">Reefer</option>
-    <option value="Flatbed">Flatbed</option>
-    <option value="Step Deck">Step Deck</option>
-    <option value="Hotshot">Hotshot</option>
-    <option value="Box Truck">Box Truck</option>
-  </select>
+      <div class="buttons">
+        <button type="button" onclick="prevStep()">Previous</button>
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
+    </div>
 
-  <label>ELD System:</label>
-  <input type="text" id="eldSystem">
+    <!-- Step 3: Preferences & Monetization -->
+    <div class="step">
+      <h2>Preferences & Monetization</h2>
+      <select name="preferredRoute" required>
+        <option value="">Preferred Route Type</option>
+        <option value="Local">Local</option>
+        <option value="Regional">Regional</option>
+        <option value="OTR">OTR</option>
+      </select>
 
-  <label>Route Preference:</label>
-  <select id="route">
-    <option value="Local">Local</option>
-    <option value="Regional">Regional</option>
-    <option value="OTR">OTR</option>
-  </select>
+      <input type="text" name="homeTerminal" placeholder="Home Terminal City / State" required>
 
-  <label>Home City/State:</label>
-  <input type="text" id="homeLocation">
+      <label>Desired Pay Structure:</label>
+      <select name="payStructure" required>
+        <option value="">Select</option>
+        <option value="CPM">CPM</option>
+        <option value="Percentage">Percentage</option>
+        <option value="Day Rate">Day Rate</option>
+        <option value="Owner-Op Rate">Owner-Op Rate per Mile</option>
+      </select>
 
-  <label>Pay Structure:</label>
-  <select id="payStructure">
-    <option value="CPM">CPM</option>
-    <option value="Percentage">Percentage</option>
-    <option value="Day Rate">Day Rate</option>
-    <option value="Owner-Op Rate">Owner-Op Rate</option>
-  </select>
+      <label>Willingness:</label>
+      <select name="willingness" multiple required>
+        <option value="Team Driving">Team Driving</option>
+        <option value="HazMat Loads">HazMat Loads</option>
+        <option value="Port Loads">Port Loads</option>
+        <option value="Oversize">Oversize</option>
+      </select>
 
-  <label>Insurance Provider (optional):</label>
-  <input type="text" id="insurance">
+      <div class="buttons">
+        <button type="button" onclick="prevStep()">Previous</button>
+        <button type="submit">Submit</button>
+      </div>
+    </div>
 
-  <label>Load Preferences:</label>
-  <input type="checkbox" id="teamDriving">Team Driving
-  <input type="checkbox" id="hazmatLoad">HazMat loads
-  <input type="checkbox" id="portLoads">Port Loads
-  <input type="checkbox" id="oversize">Oversize
-
-  <label>Consent to Store & License Data:</label>
-  <input type="checkbox" id="consent" required> I consent
-
-  <button type="submit">Join Network</button>
-</form>
-
-<div id="confirmation"></div>
+  </form>
+</div>
 
 <script>
-const form = document.getElementById('driverForm');
-const confirmation = document.getElementById('confirmation');
+let currentStep = 0;
+const steps = document.querySelectorAll('.step');
+const progress = document.getElementById('progress');
 
-// Initialize IPFS
-const ipfs = window.IpfsHttpClient.create({url: 'https://ipfs.infura.io:5001/api/v0'});
+function showStep(n) {
+  steps.forEach((step, i) => step.classList.toggle('active', i === n));
+  progress.style.width = ((n) / (steps.length - 1)) * 100 + '%';
+}
 
-form.addEventListener('submit', async (e) => {
+function nextStep() {
+  if (!validateStep()) return;
+  currentStep++;
+  if (currentStep >= steps.length) currentStep = steps.length - 1;
+  showStep(currentStep);
+}
+
+function prevStep() {
+  currentStep--;
+  if (currentStep < 0) currentStep = 0;
+  showStep(currentStep);
+}
+
+function validateStep() {
+  const inputs = steps[currentStep].querySelectorAll('input, select');
+  for (let input of inputs) {
+    if (!input.checkValidity()) {
+      input.reportValidity();
+      return false;
+    }
+  }
+  return true;
+}
+
+document.getElementById('signupForm').addEventListener('submit', function(e){
   e.preventDefault();
-  
-  if(!document.getElementById('consent').checked){
-    alert('Consent required.');
-    return;
-  }
-
-  // Collect form data
-  const data = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    cdlClass: document.getElementById('cdlClass').value,
-    endorsements: {
-      hazmat: document.getElementById('hazmat').checked,
-      tanker: document.getElementById('tanker').checked,
-      doubles: document.getElementById('doubles').checked,
-      passenger: document.getElementById('passenger').checked,
-      twic: document.getElementById('twic').checked
-    },
-    driverType: document.getElementById('driverType').value,
-    fleetSize: document.getElementById('fleetSize').value,
-    experience: document.getElementById('experience').value,
-    equipment: document.getElementById('equipment').value,
-    eldSystem: document.getElementById('eldSystem').value,
-    route: document.getElementById('route').value,
-    homeLocation: document.getElementById('homeLocation').value,
-    payStructure: document.getElementById('payStructure').value,
-    insurance: document.getElementById('insurance').value,
-    loadPreferences: {
-      teamDriving: document.getElementById('teamDriving').checked,
-      hazmatLoad: document.getElementById('hazmatLoad').checked,
-      portLoads: document.getElementById('portLoads').checked,
-      oversize: document.getElementById('oversize').checked
-    },
-    timestamp: new Date().toISOString()
-  };
-
-  // Encrypt sensitive info
-  const secretKey = 'YOUR_SECRET_KEY'; // keep offline
-  const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-
-  try {
-    // Upload encrypted data to IPFS
-    const result = await ipfs.add(encrypted);
-    console.log('IPFS CID:', result.path);
-
-    // Here you can call a smart contract function to store metadata + CID
-    // e.g., driverMetadata = {cdlClass, endorsements, route, cid: result.path}
-
-    confirmation.innerHTML = `Profile submitted! IPFS CID: ${result.path}`;
-  } catch(err){
-    console.error(err);
-    confirmation.innerHTML = 'Error submitting profile.';
-  }
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+  console.log("Collected Data:", data);
+  alert("Signup Complete! Check console for collected data.");
+  // Placeholder: here you can send data to backend, Web3 contract, or analytics pipeline
 });
 </script>
-
 </body>
 </html>
