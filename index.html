@@ -1,4 +1,14 @@
-<!-- Hero & Mission Section -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verified Truckers Network</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- Hero Section -->
 <section class="bg-gradient-to-r from-blue-700 to-indigo-600 text-white py-20">
   <div class="container mx-auto text-center px-6">
     <h1 class="text-4xl md:text-6xl font-bold mb-4">Join the Verified Truckers Network</h1>
@@ -13,8 +23,8 @@
     <div class="flex flex-wrap mb-8 border-b border-gray-200">
       <button class="about-tab-button py-2 px-4 font-semibold text-blue-700 border-b-2 border-blue-700 mr-2" data-tab="mission">Our Mission</button>
       <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700 mr-2" data-tab="benefits">Driver Benefits</button>
-      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700 mr-2" data-tab="partners">Company & Owner-Operator Benefits</button>
-      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700" data-tab="community">Our Community</button>
+      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700 mr-2" data-tab="partners">Company / Owner Benefits</button>
+      <button class="about-tab-button py-2 px-4 font-semibold text-gray-600 hover:text-blue-700" data-tab="community">Community</button>
     </div>
 
     <div id="about-tab-contents">
@@ -43,7 +53,7 @@
       <!-- Partner / Owner Benefits -->
       <div class="about-tab-content hidden" id="partners">
         <div class="bg-white p-6 rounded shadow-md">
-          <h2 class="text-2xl font-bold mb-4">Company & Owner-Operator Benefits</h2>
+          <h2 class="text-2xl font-bold mb-4">Company / Owner-Operator Benefits</h2>
           <ul class="list-disc list-inside space-y-2">
             <li>Quickly identify verified, qualified drivers for hire.</li>
             <li>Reduce onboarding time and compliance risk.</li>
@@ -84,3 +94,80 @@
     });
   });
 </script>
+
+<!-- Multi-Step Onboarding Form -->
+<section id="onboardingForm" class="container mx-auto py-16 px-6">
+  <h2 class="text-3xl font-bold mb-6 text-center">Driver & Owner-Operator Onboarding</h2>
+  <form id="driverForm" class="space-y-8 bg-white p-6 rounded shadow-md">
+
+    <!-- Section 1: Personal Info -->
+    <div class="form-section">
+      <h3 class="text-xl font-semibold mb-4">Personal Information</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" name="fullName" placeholder="Full Legal Name" required class="border p-2 rounded w-full">
+        <input type="text" name="preferredName" placeholder="Preferred Name" class="border p-2 rounded w-full">
+        <input type="date" name="dob" placeholder="Date of Birth" required class="border p-2 rounded w-full">
+        <input type="email" name="email" placeholder="Email Address" required class="border p-2 rounded w-full">
+        <input type="text" name="phone" placeholder="Phone Number" required class="border p-2 rounded w-full">
+        <input type="text" name="address" placeholder="Home Address" required class="border p-2 rounded w-full">
+        <input type="text" name="emergencyContact" placeholder="Emergency Contact" class="border p-2 rounded w-full">
+      </div>
+    </div>
+
+    <!-- Section 2: CDL & Core Credentials -->
+    <div class="form-section">
+      <h3 class="text-xl font-semibold mb-4">CDL & Core Credentials</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <select name="cdlStatus" required class="border p-2 rounded w-full">
+          <option value="">Do you have a Commercial Driver’s License (CDL)?</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <input type="file" name="cdlUpload" accept=".jpg,.png,.pdf" class="border p-2 rounded w-full">
+        <input type="text" name="cdlNumber" placeholder="CDL Number" class="border p-2 rounded w-full">
+        <input type="text" name="licenseState" placeholder="License State" class="border p-2 rounded w-full">
+        <input type="date" name="licenseExpiration" placeholder="License Expiration Date" class="border p-2 rounded w-full">
+
+        <select name="dotCard" required class="border p-2 rounded w-full">
+          <option value="">Do you have an active DOT Medical Card?</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <input type="file" name="dotCardUpload" accept=".jpg,.png,.pdf" class="border p-2 rounded w-full">
+        <input type="date" name="dotExpiration" placeholder="DOT Expiration Date" class="border p-2 rounded w-full">
+      </div>
+    </div>
+
+    <!-- Section 3: Endorsements & Skills -->
+    <div class="form-section">
+      <h3 class="text-xl font-semibold mb-4">Endorsements & Skills</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <label><input type="checkbox" name="endorsements" value="HazMat"> HazMat</label>
+        <label><input type="checkbox" name="endorsements" value="Tanker"> Tanker</label>
+        <label><input type="checkbox" name="endorsements" value="Doubles/Triples"> Doubles/Triples</label>
+        <label><input type="checkbox" name="endorsements" value="Passenger"> Passenger</label>
+        <label><input type="checkbox" name="endorsements" value="SchoolBus"> School Bus</label>
+        <label><input type="checkbox" name="endorsements" value="AirBrakes"> Air Brakes Certified</label>
+      </div>
+      <div class="mt-4">
+        <label>Upload relevant certifications (HazMat, TSA, etc.)</label>
+        <input type="file" name="certUploads" multiple accept=".jpg,.png,.pdf" class="border p-2 rounded w-full">
+      </div>
+    </div>
+
+    <!-- Section 4+: Add other sections like Experience, Cargo, Owner-Operator, Equipment, Security, Optional Credentials, Update System -->
+    <!-- Repeat same pattern: grid input fields, file uploads, conditional logic for Owner-Operators, fleets, etc. -->
+
+    <div class="text-center">
+      <button type="submit" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition">Submit Application</button>
+    </div>
+  </form>
+</section>
+
+<!-- Add JS later for multi-step logic, conditional fields, uploads handling -->
+<script>
+  // Example: placeholder for conditional Owner-Operator fields or stepper navigation
+</script>
+
+</body>
+</html>
