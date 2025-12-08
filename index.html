@@ -1,205 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trucking Network Signup</title>
-<style>
-  body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(120deg,#f0f2f5,#e2e8f0);
-    margin: 0; padding: 0;
-  }
-  .container {
-    max-width: 800px;
-    margin: 50px auto;
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-  h1 { text-align: center; color: #1a202c; }
-  .step { display: none; }
-  .step.active { display: block; }
-  .step input, .step select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 20px 0;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-  }
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  button {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 6px;
-    background-color: #3182ce;
-    color: white;
-    cursor: pointer;
-  }
-  button:hover { background-color: #2b6cb0; }
-  .progress-bar {
-    height: 10px;
-    background: #e2e8f0;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    overflow: hidden;
-  }
-  .progress-bar-inner {
-    height: 100%;
-    width: 0%;
-    background-color: #3182ce;
-    transition: width 0.3s ease;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Trucking Network Signup</title>
+  <style>
+    /* Base Styles */
+    body { font-family: 'Arial', sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    h1, h2 { color: #222; }
+    .container { max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.1);}
+    .step { margin-bottom: 40px; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #fafafa; }
+    label { display: block; margin: 10px 0 5px; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; }
+    button { padding: 15px 30px; background: #007bff; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .progress-bar { height: 10px; background: #ddd; border-radius: 5px; margin-bottom: 20px; }
+    .progress { height: 10px; background: #007bff; border-radius: 5px; width: 0%; transition: width 0.3s; }
+  </style>
 </head>
 <body>
-<div class="container">
-  <h1>Join the Trucking Network</h1>
-  <div class="progress-bar"><div class="progress-bar-inner" id="progress"></div></div>
+  <div class="container">
+    <h1>Join the Premium Trucking Network</h1>
+    <p>Top-tier drivers get priority routes, premium placements, and exclusive offers.</p>
+    
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
 
-  <form id="signupForm">
-
-    <!-- Step 1: Personal & Contact -->
-    <div class="step active">
-      <h2>Personal & Contact Info</h2>
-      <input type="text" name="fullName" placeholder="Full Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="tel" name="phone" placeholder="Phone Number" required>
-      <div class="buttons">
-        <span></span>
-        <button type="button" onclick="nextStep()">Next</button>
-      </div>
-    </div>
-
-    <!-- Step 2: Driver Info -->
-    <div class="step">
-      <h2>Driver & Vehicle Info</h2>
-      <select name="cdlClass" required>
-        <option value="">Select CDL Class</option>
-        <option value="A">Class A</option>
-        <option value="B">Class B</option>
-        <option value="C">Class C</option>
-      </select>
-
-      <select name="driverType" required>
-        <option value="">Driver Type</option>
-        <option value="company">Company Driver</option>
-        <option value="owner-op">Owner-Operator</option>
-        <option value="owner-op-authority">Owner-Operator w/ Authority</option>
-        <option value="fleet-owner">Fleet Owner</option>
-      </select>
-
-      <input type="number" name="fleetSize" placeholder="Number of Trucks (if Fleet Owner)">
+    <form id="signupForm">
       
-      <label>Endorsements:</label>
-      <select name="endorsements" multiple>
-        <option value="HazMat">HazMat</option>
-        <option value="Tanker">Tanker</option>
-        <option value="Doubles/Triples">Doubles/Triples</option>
-        <option value="Passenger">Passenger</option>
-        <option value="TWIC">TWIC Card</option>
-      </select>
-
-      <label>Equipment Type:</label>
-      <select name="equipment" multiple required>
-        <option value="Dry Van">Dry Van</option>
-        <option value="Reefer">Reefer</option>
-        <option value="Flatbed">Flatbed</option>
-        <option value="Step Deck">Step Deck</option>
-        <option value="Hotshot">Hotshot</option>
-        <option value="Box Truck">Box Truck</option>
-      </select>
-
-      <div class="buttons">
-        <button type="button" onclick="prevStep()">Previous</button>
-        <button type="button" onclick="nextStep()">Next</button>
+      <!-- Step 1: Personal & Contact -->
+      <div class="step" id="step1">
+        <h2>Step 1: Personal Info</h2>
+        <label>Full Name</label>
+        <input type="text" name="name" required>
+        <label>Email Address</label>
+        <input type="email" name="email" required>
+        <label>Phone Number</label>
+        <input type="tel" name="phone" required>
+        <label>Home Terminal City / State</label>
+        <input type="text" name="homeTerminal" required>
+        <label>Currently employed in trucking?</label>
+        <select name="currentEmployment" required>
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <button type="button" onclick="nextStep(2)">Next Step</button>
       </div>
-    </div>
 
-    <!-- Step 3: Preferences & Monetization -->
-    <div class="step">
-      <h2>Preferences & Monetization</h2>
-      <select name="preferredRoute" required>
-        <option value="">Preferred Route Type</option>
-        <option value="Local">Local</option>
-        <option value="Regional">Regional</option>
-        <option value="OTR">OTR</option>
-      </select>
-
-      <input type="text" name="homeTerminal" placeholder="Home Terminal City / State" required>
-
-      <label>Desired Pay Structure:</label>
-      <select name="payStructure" required>
-        <option value="">Select</option>
-        <option value="CPM">CPM</option>
-        <option value="Percentage">Percentage</option>
-        <option value="Day Rate">Day Rate</option>
-        <option value="Owner-Op Rate">Owner-Op Rate per Mile</option>
-      </select>
-
-      <label>Willingness:</label>
-      <select name="willingness" multiple required>
-        <option value="Team Driving">Team Driving</option>
-        <option value="HazMat Loads">HazMat Loads</option>
-        <option value="Port Loads">Port Loads</option>
-        <option value="Oversize">Oversize</option>
-      </select>
-
-      <div class="buttons">
-        <button type="button" onclick="prevStep()">Previous</button>
-        <button type="submit">Submit</button>
+      <!-- Step 2: Credentials -->
+      <div class="step" id="step2" style="display:none;">
+        <h2>Step 2: Credentials</h2>
+        <label>CDL Class</label>
+        <select name="cdlClass" required>
+          <option value="">Select</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+        <label>Endorsements</label>
+        <select name="endorsements" multiple>
+          <option value="HazMat">HazMat (H)</option>
+          <option value="Tanker">Tanker (N)</option>
+          <option value="Doubles/Triples">Doubles/Triples (T)</option>
+          <option value="Passenger">Passenger (P)</option>
+          <option value="TWIC">TWIC</option>
+        </select>
+        <label>Years of Experience</label>
+        <input type="number" name="experience" min="0" max="50" required>
+        <button type="button" onclick="nextStep(3)">Next Step</button>
       </div>
-    </div>
 
-  </form>
-</div>
+      <!-- Step 3: Truck / Fleet Info -->
+      <div class="step" id="step3" style="display:none;">
+        <h2>Step 3: Truck & Fleet</h2>
+        <label>Truck Type</label>
+        <select name="truckType" required>
+          <option value="">Select</option>
+          <option value="Dry Van">Dry Van</option>
+          <option value="Reefer">Reefer</option>
+          <option value="Flatbed">Flatbed</option>
+          <option value="Step Deck">Step Deck</option>
+          <option value="Hotshot">Hotshot</option>
+          <option value="Box Truck">Box Truck</option>
+        </select>
+        <label>Truck Ownership</label>
+        <select name="ownership" required>
+          <option value="">Select</option>
+          <option value="Company Driver">Company Driver</option>
+          <option value="Owner-Operator">Owner-Operator</option>
+          <option value="Fleet Owner">Fleet Owner</option>
+        </select>
+        <label>If Fleet Owner, Number of Trucks</label>
+        <input type="number" name="fleetSize" min="0">
+        <button type="button" onclick="nextStep(4)">Next Step</button>
+      </div>
 
-<script>
-let currentStep = 0;
-const steps = document.querySelectorAll('.step');
-const progress = document.getElementById('progress');
+      <!-- Step 4: Preferences & Opportunities -->
+      <div class="step" id="step4" style="display:none;">
+        <h2>Step 4: Preferences & Opportunities</h2>
+        <label>Route Preference</label>
+        <select name="routePreference" required>
+          <option value="">Select</option>
+          <option value="Local">Local</option>
+          <option value="Regional">Regional</option>
+          <option value="OTR">Over the Road</option>
+        </select>
+        <label>Willingness for:</label>
+        <select name="willingness" multiple>
+          <option value="HazMat">HazMat Loads</option>
+          <option value="Port">Port Loads</option>
+          <option value="Oversize">Oversize Loads</option>
+          <option value="Team Driving">Team Driving</option>
+        </select>
+        <label>Desired Pay Structure</label>
+        <select name="payStructure" required>
+          <option value="">Select</option>
+          <option value="CPM">CPM</option>
+          <option value="Percentage">Percentage</option>
+          <option value="Day Rate">Day Rate</option>
+          <option value="Owner-Op Rate">Owner-Op Rate per Mile</option>
+        </select>
+        <button type="button" onclick="nextStep(5)">Next Step</button>
+      </div>
 
-function showStep(n) {
-  steps.forEach((step, i) => step.classList.toggle('active', i === n));
-  progress.style.width = ((n) / (steps.length - 1)) * 100 + '%';
-}
+      <!-- Step 5: High-Value Opt-Ins -->
+      <div class="step" id="step5" style="display:none;">
+        <h2>Step 5: Premium Opportunities</h2>
+        <label>
+          <input type="checkbox" name="cdlTraining"> Interested in CDL Training & Certification Referrals
+        </label>
+        <label>
+          <input type="checkbox" name="insurance"> Interested in Owner-Operator Insurance Programs
+        </label>
+        <label>
+          <input type="checkbox" name="referralNetwork"> Join our Referral Network
+        </label>
+        <label>Biggest Challenge in Trucking</label>
+        <textarea name="challenge" rows="3"></textarea>
+        <label>How Did You Hear About Us?</label>
+        <input type="text" name="referralSource">
+        <button type="submit">Submit Application</button>
+      </div>
 
-function nextStep() {
-  if (!validateStep()) return;
-  currentStep++;
-  if (currentStep >= steps.length) currentStep = steps.length - 1;
-  showStep(currentStep);
-}
+    </form>
+  </div>
 
-function prevStep() {
-  currentStep--;
-  if (currentStep < 0) currentStep = 0;
-  showStep(currentStep);
-}
+  <script>
+    const steps = 5;
+    let currentStep = 1;
 
-function validateStep() {
-  const inputs = steps[currentStep].querySelectorAll('input, select');
-  for (let input of inputs) {
-    if (!input.checkValidity()) {
-      input.reportValidity();
-      return false;
+    function nextStep(step) {
+      document.getElementById('step' + currentStep).style.display = 'none';
+      currentStep = step;
+      document.getElementById('step' + currentStep).style.display = 'block';
+      document.getElementById('progress').style.width = ((currentStep-1)/(steps-1))*100 + '%';
     }
-  }
-  return true;
-}
 
-document.getElementById('signupForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
-  console.log("Collected Data:", data);
-  alert("Signup Complete! Check console for collected data.");
-  // Placeholder: here you can send data to backend, Web3 contract, or analytics pipeline
-});
-</script>
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you! Your application has been submitted. Backend hooks can now capture data for monetization.');
+      // Here you would connect to your backend or Web3 smart contract for storing the data
+    });
+  </script>
 </body>
 </html>
